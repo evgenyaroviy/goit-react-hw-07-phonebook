@@ -10,18 +10,11 @@ li {
 }
 
 .name {
-    font-size: 25px;
-    font-weight: 500;
-    margin: 0;
-    margin-left: 35px;
-    text-transform: capitalize;
-}
-
-.number {
     font-size: 20px;
     font-weight: 400;
     margin: 0;
-    margin-top: 5px;
+    margin-left: 35px;
+    text-transform: capitalize;
 }
 
 .del {
