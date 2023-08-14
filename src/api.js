@@ -11,26 +11,13 @@ export const requestContacts = async () => {
 }
 
 export const postContact = async (body) => {
-    const response = await axios.post(`${BASE_URL}/contacts`);
+    const response = await axios.post(`${BASE_URL}/contacts`, body);
 
     return response.data;
 }
 
 export const delContact = async (id) => {
     const response = await axios.delete(`${BASE_URL}/contacts/${id}`);
-
-    return response.data;
-}
-
-export const filterContacts = async (query) => {
-    const url = new URL(`${BASE_URL}/contacts`);
-    url.searchParams.append('query', query);
-
-    const response = await axios.post(url.toString(), {}, {
-        headers: {
-            accept: 'application/json',
-        }
-    });
 
     return response.data;
 }

@@ -1,30 +1,33 @@
 import css from "./phonebook.module.css"
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "components/redux/contactsSlice";
 import { getContacts } from "components/redux/selectors";
+import { addContactThunk } from "components/redux/thunks";
 
  export const ContactForm = () => {
    const dispatch = useDispatch();
-   const contacts = useSelector(getContacts);
+   const { items } = useSelector(getContacts);
    
    const submitForm = e => {
     e.preventDefault();
      const form = e.target;
      const name = form.elements.name.value;
-     const number = form.elements.number.value;
+     const phone = form.elements.number.value
+     const body = {
+            name,
+            phone,
+     };
 
-    //  const contactExists = contacts.some(contact => contact.name === name);
+     const contactExists = items.some(contact => contact.name === name);
 
-    //   if (contactExists) {
-    //   alert(`${name} is already in contacts`);
-    //   return;
-    // } else {
-    //   dispatch(addContact(name, number));
-    //   form.reset();
-    // }
-  };
-
-
+      if (contactExists) {
+      alert(`${name} is already in contacts`);
+      return;
+    } else {
+      dispatch(addContactThunk(body));
+      form.reset();
+    }
+   };
+ 
   return (
     <div>
       <form className={css.form} onSubmit={submitForm}>

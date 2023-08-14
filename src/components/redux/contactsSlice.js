@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllContactsThunk } from './thunks';
-import { handleFulfield, handleFulfieldContacts, handlePending, handleRejected } from './hendlers';
+import { addContactThunk, delContactThunk, getAllContactsThunk } from './thunks';
+import { handleFulfield, handleFulfieldContacts, handleFulfilledAddContact, handleFulfilledDeleteContact, handlePending, handleRejected } from './hendlers';
 
 export const initialState = {
     items: [],
@@ -15,6 +15,8 @@ const contactsSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(getAllContactsThunk.fulfilled, handleFulfieldContacts)
+      .addCase(addContactThunk.fulfilled, handleFulfilledAddContact)
+      .addCase(delContactThunk.fulfilled, handleFulfilledDeleteContact)
       .addMatcher((actions) => actions.type.endsWith('/fulfilled'), handleFulfield)
       .addMatcher((actions) => actions.type.endsWith('/pending'), handlePending)
       .addMatcher((actions) => actions.type.endsWith('/rejected'), handleRejected)
