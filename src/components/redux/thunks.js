@@ -5,10 +5,8 @@ export const getAllContactsThunk = createAsyncThunk('contacts/getAllContacts',
   async (_, thunkAPI) => {
     try {
       const response = requestContacts();
-      console.log(response);
       return response;
     } catch (e) {
-      console.log(e);
       return thunkAPI.rejectWithValue(e.message);
     }
   });
@@ -21,7 +19,6 @@ export const addContactThunk = createAsyncThunk(
       const response = await postContact(body);
       return response;
     } catch (e) {
-      console.log(e);
       return thunkAPI.rejectWithValue(e.message);
     }
   });
@@ -34,7 +31,6 @@ export const delContactThunk = createAsyncThunk(
       const response = await delContact(id);
       return response;
     } catch (e) {
-      console.log(e);
       return thunkAPI.rejectWithValue(e.message);
     }
   });

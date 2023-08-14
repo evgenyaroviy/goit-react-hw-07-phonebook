@@ -2,8 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredContacts } from '../redux/selectors';
 import css from './contacts.module.css'
 import { useEffect } from 'react';
-import { getAllContactsThunk } from 'components/redux/thunks';
-import { delContact } from 'api';
+import { delContactThunk, getAllContactsThunk } from 'components/redux/thunks';
 
 
 export const ContactList = () => {
@@ -13,10 +12,9 @@ export const ContactList = () => {
   useEffect(() => {
     dispatch(getAllContactsThunk())
   }, [dispatch])
-  console.log(filteredContacts);
 
   const handleDeleteContact = id => {
-    dispatch(delContact(id));
+    dispatch(delContactThunk(id));;
   };
 
   return (
