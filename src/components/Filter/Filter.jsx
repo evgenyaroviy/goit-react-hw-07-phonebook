@@ -5,7 +5,7 @@ import { filterContacts } from '../redux/filtersSlice';
 import "../Phonebook/phonebook.module.css"
 
 export const Filter = () => {
-  const contacts = useSelector(getContacts)
+  const { items: contacts} = useSelector(getContacts)
   const dispatch = useDispatch()
 
   const handleFilterChange = e => {

@@ -1,29 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { nanoid } from 'nanoid';
+import { getAllContactsThunk } from './thunks';
+import { handleFulfield, handleFulfieldContacts, handlePending, handleRejected } from './hendlers';
+
+export const initialState = {
+    items: [],
+    isLoading: false,
+    error: null
+}
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: [],
-  reducers: {
-    addContact: {
-      reducer(state, action) {
-        state.push(action.payload);
-      },
-      prepare(name, number) {
-        return {
-          payload: {
-            id: nanoid(),
-            name,
-            number,
-          },
-        };
-      },
-    },
-    delContact(state, { payload }) {
-      return state.filter(contact => contact.id !== payload);
-    },
+  initialState,
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(getAllContactsThunk.fulfilled, handleFulfieldContacts)
+      .addMatcher((actions) => actions.type.endsWith('/fulfilled'), handleFulfield)
+      .addMatcher((actions) => actions.type.endsWith('/pending'), handlePending)
+      .addMatcher((actions) => actions.type.endsWith('/rejected'), handleRejected)
   },
 });
 
-export const { addContact, delContact } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;

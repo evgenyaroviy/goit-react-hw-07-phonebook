@@ -13,15 +13,15 @@ import { getContacts } from "components/redux/selectors";
      const name = form.elements.name.value;
      const number = form.elements.number.value;
 
-     const contactExists = contacts.some(contact => contact.name === name);
+    //  const contactExists = contacts.some(contact => contact.name === name);
 
-      if (contactExists) {
-      alert(`${name} is already in contacts`);
-      return;
-    } else {
-      dispatch(addContact(name, number));
-      form.reset();
-    }
+    //   if (contactExists) {
+    //   alert(`${name} is already in contacts`);
+    //   return;
+    // } else {
+    //   dispatch(addContact(name, number));
+    //   form.reset();
+    // }
   };
 
 
