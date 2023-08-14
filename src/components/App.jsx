@@ -10,9 +10,9 @@ export const App = () => {
     <div>
       <h1>Phonebook</h1>
       <ContactForm />
+      <h2>Contacts</h2>
       {isLoading && <div style={{marginLeft: '30px'}}>Loading...</div>}
       {error && <div>{error.message}</div>}
-      <h2>Contacts</h2>
       <Filter />
       <ContactList />
     </div>
